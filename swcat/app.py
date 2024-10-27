@@ -6,7 +6,6 @@ from fastapi import FastAPI
 from sqlmodel import select
 
 from swcat.db import get_session
-from swcat.db import init_db
 from swcat.db import Session
 from swcat.db.models import Release as ReleaseSQL
 from swcat.db.models import Software as SoftwareSQL
@@ -18,11 +17,6 @@ from swcat.models import SoftwareCreate
 SessionDep = Annotated[Session, Depends(get_session)]
 
 app = FastAPI()
-
-
-@app.on_event("startup")
-def on_startup():
-    init_db()
 
 
 @app.post("/softwares/")
