@@ -1,3 +1,4 @@
+alembic
 black==24.10.0
 build
 flake8==7.1.1
