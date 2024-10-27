@@ -1,3 +1,5 @@
+from datetime import date
+
 from pydantic import BaseModel
 from pydantic import EmailStr
 from pydantic import Field
@@ -14,5 +16,19 @@ class SoftwareCreate(SoftwareBase):
     pass
 
 
-class Software(SoftwareCreate):
-    software_id: UUID4 = Field()
+class Software(SoftwareBase):
+    software_id: UUID4
+
+
+class ReleaseBase(BaseModel):
+    version: str = Field(min_length=1)
+    release_date: date
+
+
+class ReleaseCreate(ReleaseBase):
+    pass
+
+
+class Release(ReleaseBase):
+    release_id: UUID4
+    software_id: UUID4
