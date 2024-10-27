@@ -8,6 +8,8 @@ from sqlmodel import SQLModel
 
 class Software(SQLModel, table=True):
     software_id: uuid.UUID | None = Field(default_factory=uuid.uuid4, primary_key=True)
+    code_url: str | None = Field(default=None)
+    description: str | None = Field(default=None, max_length=280)
     display_name: str = Field(index=True, unique=True)
     maintainer_name: str | None = Field(default=None)
     maintainer_email: str
